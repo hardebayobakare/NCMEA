@@ -11,15 +11,15 @@
                     <li><a href="events.php" title="">Events</a></li>
                     <li class="menu-item-has-children"><a href="" title="">Get Involved</a>
                         <ul>
-                            <li><a href="" title="">Donate</a></li>
-                            <li><a href="" title="">Volunteer</a></li>
+                            <li><a href="#" title="">Donate</a></li>
+                            <li><a href="#" title="">Volunteer</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children"><a href="#" title="">About</a>
                         <ul>
-                            <li><a href="" title="">About NCMEA</a></li>
-                            <li><a href="" title="">Our Executives</a></li>
-                            <li><a href="" title="">Our Core Values</a></li>
+                            <li><a href="#" title="">About NCMEA</a></li>
+                            <li><a href="#" title="">Our Executives</a></li>
+                            <li><a href="#" title="">Our Core Values</a></li>
                         </ul>
                     </li>
                     <li><a href="contact.html" title="">Contact</a></li>
