@@ -10,7 +10,6 @@
     $sholars = $db->getScholars();
     $upcomingevents = $db->getRecentUpcomingEvents();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <body>
