@@ -30,8 +30,8 @@
                             <h1><img src="assets/img/resources/ayat-txt.png" alt="page-title-ayat.png"></h1>
                             <h2>Blog</h2>
                             <ul class="breadcrumbs">
-                                <li><a href="index" title="">Home</a></li>
-                                <li><a href="blogs" title="">Blog</a></li>
+                                <li><a href="index.php" title="">Home</a></li>
+                                <li><a href="blogs.php" title="">Blog</a></li>
                                 <li>Blog Details</li>
                             </ul>
                         </div><!-- Page Title Wrap -->
@@ -66,10 +66,10 @@
                                         <div class="pst-shr-tgs">
                                             <div class="team-scl float-left">
                                                 <span>Share This:</span>
-                                                <a href="https://www.twitter.com/intent/tweet?text=<?php echo $blog[0]['Blog_Title']?>&url=link" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-                                                <a href="https://www.facebook.com/share.php?u=link" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-                                                <a href="https://www.youtube.com/<?php echo $blog[0]['Blog_Title']?>" title="Youtube" target="_blank"><i class="fa fa-youtube"></i></a>
-                                                <a href="https://www.instagram.com/<?php echo $blog[0]['Blog_Title']?>" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
+                                                <a href="#" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                <a href="#" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                <a href="#" title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                                <a href="#" title="Google Plus" target="_blank"><i class="fa fa-google-plus"></i></a>
                                             </div>
                                         </div>
                                         <!-- <div class="cmts-wrp">
@@ -105,11 +105,14 @@
                                             <h3>Leave Your Comments</h3>
                                             <form>
                                                 <div class="row mrg20">
-                                                    <div class="col-md-12 col-sm-6 col-lg-12">
+                                                    <div class="col-md-4 col-sm-6 col-lg-4">
                                                         <input type="text" placeholder="Name">
                                                     </div>
-                                                    <div class="col-md-12 col-sm-6 col-lg-12">
+                                                    <div class="col-md-4 col-sm-6 col-lg-4">
                                                         <input type="email" placeholder="Email">
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-12 col-lg-4">
+                                                        <input type="text" placeholder="Subject">
                                                     </div>
                                                     <div class="col-md-12 col-sm-12 col-lg-12">
                                                         <textarea placeholder="Message"></textarea>
@@ -136,7 +139,7 @@
                                         <h4>Categories</h4>
                                         <ul class="cat-lst">
                                             <?php foreach ($categories as $cat) {?>
-                                                <li><a href="blogs?cat=<?php echo $cat['Blog_Cat_ID']?>" title=""><?php echo $cat['Blog_Cat_Name']?></a><?php echo "(" .$cat['Number'] .")"?></li>
+                                                <li><a href="blogs.php?cat=<?php echo $cat['Blog_Cat_ID']?>" title=""><?php echo $cat['Blog_Cat_Name']?></a><?php echo "(" .$cat['Number'] .")"?></li>
                                             <?php }?>
                                         </ul>
                                     </div>
@@ -147,7 +150,7 @@
                                                 <div class="rcnt-bx">
                                                     <a href="blog-detail.html" title=""><img src="admin/assets/img/blogs/<?php echo $recent['Blog_Image_S']?>" alt="rcnt-img1.jpg"></a>
                                                     <div class="rcnt-inf">
-                                                        <h6><a href="blog-detail?id=<?php echo $recent['Blog_ID']?>" title=""><?php echo $recent['Blog_Title']?></a></h6>
+                                                        <h6><a href="blog-detail.php?id=<?php echo $recent['Blog_ID']?>" title=""><?php echo $recent['Blog_Title']?></a></h6>
                                                         <span class="thm-clr"><i class="fa fa-calendar-o"></i><?php echo $recent['Date']?></span>
                                                     </div>
                                                 </div>

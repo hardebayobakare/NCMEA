@@ -34,7 +34,7 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-12 col-lg-6">
                                 <div class="msn-thmb-wrap">
-                                <a data-fancybox="gallery"><img src="assets/img/quran_candle1.jpg" alt="msn-img1.jpg"></a>
+                                    <a href="" data-fancybox="gallery" title=""><img src="assets/img/quran_candle1.jpg" alt="msn-img1.jpg"></a> 
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12 col-lg-6">
@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-md-6 col-sm-12 col-lg-6">
                                 <div class="msn-thmb-wrap">
-                                    <a data-fancybox="gallery"><img src="assets/img/charity.jpg" alt="msn-img1.jpg"></a> 
+                                    <a href="" data-fancybox="gallery" title=""><img src="assets/img/charity.jpg" alt="msn-img1.jpg"></a> 
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-12 col-lg-6">
                                 <div class="msn-thmb-wrap">
-                                    <a data-fancybox="gallery"><img src="assets/img/family.jpg" alt="msn-img1.jpg"></a> 
+                                    <a href="" data-fancybox="gallery" title=""><img src="assets/img/family.jpg" alt="msn-img1.jpg"></a> 
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12 col-lg-6">

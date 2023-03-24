@@ -28,7 +28,7 @@
                         <h1><img src="assets/img/resources/ayat-txt.png" alt="page-title-ayat.png"></h1>
                         <h2>Blog</h2>
                         <ul class="breadcrumbs">
-                            <li><a href="index" title="">Home</a></li>
+                            <li><a href="index.php" title="">Home</a></li>
                             <li>Blog</li>
                         </ul>
                     </div><!-- Page Title Wrap -->
@@ -45,15 +45,15 @@
                                 <div class="col-md-4 col-sm-6 col-lg-4 fadeIn" data-wow-duration=".8s" data-wow-delay=".2s">
                                     <div class="blog-box">
                                         <div class="blog-thmb">
-                                            <a href="blog-detail?id=<?php echo $blog['Blog_ID']?>" title=""><img src="admin/assets/img/blogs/<?php echo $blog['Blog_Image_S']?>" alt="post-img1.jpg"></a>
+                                            <a href="blog-detail.php?id=<?php echo $blog['Blog_ID']?>" title=""><img src="admin/assets/img/blogs/<?php echo $blog['Blog_Image_S']?>" alt="post-img1.jpg"></a>
                                         </div>
                                         <div class="blog-info">
                                             <ul class="pst-mta2">
-                                                <li><?php echo $blog['Blog_Cat_Name']?></li>
+                                                <li><a href="#" title=""><?php echo $blog['Blog_Cat_Name']?></a></li>
                                             </ul>
-                                            <h4><a href="blog-detail?id=<?php echo $blog['Blog_ID']?>" title=""><?php echo $blog['Blog_Title']?></a></h4>
+                                            <h4><a href="blog-detail.php?id=<?php echo $blog['Blog_ID']?>" title=""><?php echo $blog['Blog_Title']?></a></h4>
                                             <p><?php echo substr($blog['Blog_Content'], 0, 200) . "..."?></p>
-                                            <a href="blog-detail?id=<?php echo $blog['Blog_ID']?>" title="">Read More</a>
+                                            <a href="blog-detail.php?id=<?php echo $blog['Blog_ID']?>" title="">Read More</a>
                                         </div>
                                     </div>
                                 </div>

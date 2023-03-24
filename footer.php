@@ -15,10 +15,10 @@
                                 <div class="wdgt-box">
                                     <h4>Quick Links</h4>
                                     <ul>
-                                        <li><a href="about" title="">About Us</a></li>
-                                        <li><a href="donate" title="">Donate</a></li>
-                                        <li><a href="blogs" title="">Blogs</a></li>
-                                        <li><a href="events" title="">Events</a></li>
+                                        <li><a href="about.php" title="">About Us</a></li>
+                                        <li><a href="donate.php" title="">Donate</a></li>
+                                        <li><a href="blogs.php" title="">Blogs</a></li>
+                                        <li><a href="events.php" title="">Events</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -26,7 +26,7 @@
                                 <div class="wdgt-box">
                                     <h4>Useful Links</h4>
                                     <ul>
-                                        <li><a href="contact" title="">Contact Us</a></li>
+                                        <li><a href="contact.php" title="">Contact Us</a></li>
                                         <li><a href="#" title="">Terms & Conditions</a></li>
                                         <li><a href="#" title="">Privacy Policy</a></li>
                                         <li><a href="#" title="">Cookies Policy</a></li>

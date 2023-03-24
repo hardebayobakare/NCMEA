@@ -20,7 +20,7 @@
                     <h1><img src="assets/img/resources/ayat-txt.png" alt="page-title-ayat.png"></h1>
                         <h2>Donate</h2>
                         <ul class="breadcrumbs">
-                            <li><a href="index" title="">Home</a></li>
+                            <li><a href="index.php" title="">Home</a></li>
                             <li>Donate</li>
                         </ul>
                     </div><!-- Page Title Wrap -->
@@ -65,7 +65,7 @@
                         <div class="contr-inner">
                             <div class="contr-desc contr-inr">
                                 <h2>HOW TO CONTRIBUTE</h2>
-                                <p class="donate">MAKE MONTHLY CONTRIBUTION TO <br> NIGERIAN CANADIAN MUSLIMS EDMONTON. <br> <strong>ACCT # 8333-5271257 <br> TD CANADA TRUST </strong> <br> AUTOMATIC INTERAC TRANSFER-EMAIL <strong>ncmedmonton@gmail.com</strong></p>
+                                <p>MAKE MONTHLY CONTRIBUTION TO <br> NIGERIAN CANADIAN MUSLIMS EDMONTON. <br> <strong>ACCT # 8333-5271257 <br> TD CANADA TRUST </strong> <br> AUTOMATIC INTERAC TRANSFER-EMAIL <strong>ncmedmonton@gmail.com</strong></p>
                             </div>
                             <!-- <div class="contr-butn contr-inr">
                                 <a class="secndry-btn brd-rd40" href="#" title="">DONATE</a>
@@ -82,7 +82,7 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-6 col-lg-4">
                                 <div class="expns-box">
-                                    <img src="assets/img/charity.jpg" alt="expns-img1.jpg">
+                                    <a href="#" title=""><img src="assets/img/charity.jpg" alt="expns-img1.jpg"></a>
                                     <div class="expns-info">
                                         <h4><a href="#" title="">Mosque Renovation</a></h4>
                                         <p>Mosque renovations required your money to complete rooms accomodation.</p>
@@ -96,7 +96,7 @@
                             </div>
                             <div class="col-md-4 col-sm-6 col-lg-4">
                                 <div class="expns-box">
-                                <img src="assets/img/charity.jpg" alt="expns-img1.jpg">
+                                <a href="#" title=""><img src="assets/img/charity.jpg" alt="expns-img1.jpg"></a>
                                     <div class="expns-info">
                                         <h4><a href="#" title="">New Classes For Students</a></h4>
                                         <p>Classes renovations required your money to complete rooms accomodation.</p>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="col-md-4 col-sm-6 col-lg-4">
                                 <div class="expns-box">
-                                <img src="assets/img/charity.jpg" alt="expns-img1.jpg">
+                                <a href="#" title=""><img src="assets/img/charity.jpg" alt="expns-img1.jpg"></a>
                                     <div class="expns-info">
                                         <h4><a href="#" title="">Helping Syrian Refugees</a></h4>
                                         <p>Helping Refugees required your money to complete rooms accomodation.</p>

@@ -10,7 +10,6 @@
     $sholars = $db->getScholars();
     $upcomingevents = $db->getRecentUpcomingEvents();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <body>
@@ -84,7 +83,7 @@
                                             </div>
                                         </div>
                                         <p>We strive to create a welcoming and inclusive environment that encourages spiritual growth, education, and empowerment, and to promote the values of compassion, justice, and peace. We aspire to build bridges of understanding and cooperation with our fellow citizens, and to be a source of inspiration and guidance for Muslims and non-Muslims alike. Ultimately, our vision is to create a community that embodies the best of Nigerian and Islamic culture, and that serves as a beacon of hope and goodness in our beloved Edmonton area. </p>
-                                        <a class="secndry-btn brd-rd40" href="about" title="">Learn More</a>
+                                        <a class="secndry-btn brd-rd40" href="about.php" title="">Learn More</a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-lg-6">
@@ -191,7 +190,7 @@
                             <div class="suprt-prg" id="suprt-prg3"></div>
                         </div> -->
                         <div class="view-all text-center">
-                            <a class="thm-btn brd-rd40" href="donate" title="">Donate Now</a>
+                            <a class="thm-btn brd-rd40" href="donate.php" title="">Donate Now</a>
                         </div><!-- View All -->
                     </div>
                 </div>
@@ -290,7 +289,7 @@
                                                 <div class="col-md-4 col-sm-6 col-lg-4">
                                                     <div class="evnt-box">
                                                         <div class="evnt-thmb">
-                                                            <a><img src="<?php echo "admin/assets/img/events/".$event['Event_Image']?>" alt="evnt-img1.jpg"></a>
+                                                            <a href="#" title=""><img src="<?php echo "admin/assets/img/events/".$event['Event_Image']?>" alt="evnt-img1.jpg"></a>
                                                         </div>
                                                         <div class="evnt-info">
                                                             <h4><a href="#" title=""><?php echo $event['Event_Title']?></a></h4>

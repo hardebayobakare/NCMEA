@@ -20,7 +20,7 @@
                     <h1><img src="assets/img/resources/ayat-txt.png" alt="page-title-ayat.png"></h1>
                         <h2>Conatct</h2>
                         <ul class="breadcrumbs">
-                            <li><a href="index" title="">Home</a></li>
+                            <li><a href="index.php" title="">Home</a></li>
                             <li>Conatct</li>
                         </ul>
                     </div><!-- Page Title Wrap -->
