@@ -19,6 +19,7 @@
 
         <!-- Header -->
         <?php include "dashboard-header.php"?>
+        
 
         <!-- CONTENT WRAPPER -->
         <div class="ec-content-wrapper ec-vendor-wrapper">
@@ -30,10 +31,10 @@
                     </div>
 
                     <div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-primary add-blog-modal" data-bs-toggle="modal"
                             data-bs-target="#addBlog"> Create New Blog
                         </button>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-primary add-cat-modal" data-bs-toggle="modal"
                             data-bs-target="#addBlogCat"> Create New Blog Category
                         </button>
 					</div>

@@ -30,7 +30,7 @@
                     </div>
 
                     <div>
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+							<button type="button" class="btn btn-primary add-scholar-modal" data-bs-toggle="modal"
 								data-bs-target="#addScholar"> Add New Scholar
 							</button>
 						</div>

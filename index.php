@@ -124,7 +124,7 @@
                                 <div class="col-md-4 col-sm-12 col-lg-4">
                                     <div class="srv-tl">
                                         <h2>We're on a <span>Mission</span> to</h2>
-                                        <h5>solve the problems and gain resources for a new generation.</h5>
+                                        <h5>develop and maintain a vibrant, inclusive, and charitable Islamic organization.</h5>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-sm-12 col-lg-8">
@@ -205,7 +205,7 @@
                                 <span></span>
                                 <h3>Executives and Committees</h3>
                             </div>
-                            <p>Experts in the field amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <!-- <p>Experts in the field amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
                         </div>
                         <div class="team-wrap text-center remove-ext5">
                             <div class="row">
@@ -231,7 +231,7 @@
                                         <div class="col-md-6 col-sm-6 col-lg-6">
                                             <div class="evnt-box">
                                                 <div class="evnt-info">
-                                                    <h4><a href="#" title="">No Scholars Available</a></h4>
+                                                    <h4><a title="">No Executives</a></h4>
                                                 </div>
                                             </div>
                                         </div>

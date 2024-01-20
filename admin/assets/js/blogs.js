@@ -105,6 +105,7 @@ $(document.body).on("click", ".view-image2", function(){
 
 //Add Blog Modal
 $(".add-blog").on("click", function(){
+    
     $.ajax({
         url : './php/classes/Blogs.php',
         method : 'POST',
@@ -267,6 +268,39 @@ $(document.body).on('click', '.delete-blogcat', function(){
 
         });
     }
+});
+
+//Delete Blog Category
+$(document.body).on('click', '.delete-blog', function(){
+    var bid = $(this).attr('blog_id');
+    var name = $(this).attr('name');
+    if (confirm("Are you sure to delete " + name +"?")) {
+        $.ajax({
+            url : './php/classes/Blogs.php',
+            method : 'POST',
+            data : {DELETE_BLOG: 1, bid:bid},
+            success : function(response){
+                var resp = $.parseJSON(response);
+                if (resp.status == 200) {
+                    blog_table.ajax.reload();
+                    alert(resp.message);
+                }else if (resp.status == 303) {
+                    alert(resp.message);
+                }
+            }
+
+        });
+    }
+});
+
+$(".add-blog-modal").on("click", function(){
+    $("#add-blog-form").trigger("reset");
+    $(".modal-backdrop").remove();
+});
+
+$(".add-cat-modal").on("click", function(){
+    $("#add-blogcat-form").trigger("reset");
+    $(".modal-backdrop").remove();
 });
 
 //GetBlogCategory

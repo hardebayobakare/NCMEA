@@ -30,6 +30,11 @@
 					<div class="collapse">
 						<ul class="sub-menu" id="banks" data-parent="#sidebar-menu">
 							<li class="">
+								<a class="sidenav-item-link" href="pages.php">
+									<span class="nav-text">Pages</span>
+								</a>
+							</li>
+							<li class="">
 								<a class="sidenav-item-link" href="events.php">
 									<span class="nav-text">Events</span>
 								</a>

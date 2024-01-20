@@ -50,9 +50,9 @@
             <div class="bottom-bar">
                 <p>&copy; Copyright 2023. All Rights Reserved.</p>
                 <div class="scl">
-                    <a href="#" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-                    <a href="#" title="Youtube" target="_blank"><i class="fa fa-youtube"></i></a>
-                    <a href="#" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
+                    <a href="https://twitter.com/NCMEA_YEG" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/channel/UCRAGgGLwh-zuj8HjBKRo-TQ" title="Youtube" target="_blank"><i class="fa fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/ncmea_edmonton/" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
                     <a href="#" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
                 </div>
             </div><!-- Bottom Bar -->

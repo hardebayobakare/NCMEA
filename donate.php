@@ -6,6 +6,9 @@
     require_once './config/db_function.php';
 
     $db = new DB_Functions();
+
+    $donations = $db->getDonations();
+
 ?>
 
 <!DOCTYPE html>
@@ -39,9 +42,9 @@
                             </div>
                             <div class="col-md-6 col-sm-12 col-lg-6">
                                 <div class="hstry-desc">
-                                    <p>"The likeness of those who spend their wealth in the path of Allah is as the likeness of a Grain that sprouts seven spikes. In every spike, there is a Hundred Grains. Thus does Allah multiply reward for whomever He so wills. And Allah is All-Encompasing, All-Knowing." <br> (Surah Al-Baqarah, 2:261)</p>
+                                    <p><h4 class="quran">"The likeness of those who spend their wealth in the path of Allah is as the likeness of a Grain that sprouts seven spikes. In every spike, there is a Hundred Grains. Thus does Allah multiply reward for whomever He so wills. And Allah is All-Encompasing, All-Knowing."</h4> <br> (Surah Al-Baqarah, 2:261)</p>
                                     <!-- <strong>NCMEA <span>#1</span> Nigerian Islamic Center in the <span>Edmonton!</span></strong> -->
-                                    <ul>
+                                    <!-- <ul>
                                         <li>Astonisihing Facilities</li>
                                         <li>Helping All Communities</li>
                                         <li>Leads Charity Events</li>
@@ -50,7 +53,7 @@
                                         <li>Providing Accomodations</li>
 										<li>Funding Poor People</li>
                                         <li>Providing Food & Clothes</li>
-                                    </ul>
+                                    </ul> -->
                                 </div>
                             </div>
                         </div>
@@ -80,21 +83,26 @@
                 <div class="container">
                     <div class="expns-wrp remove-ext3">
                         <div class="row">
-                            <div class="col-md-4 col-sm-6 col-lg-4">
-                                <div class="expns-box">
-                                    <img src="assets/img/charity.jpg" alt="expns-img1.jpg">
-                                    <div class="expns-info">
-                                        <h4><a href="#" title="">Mosque Renovation</a></h4>
-                                        <p>Mosque renovations required your money to complete rooms accomodation.</p>
-                                        <div class="expns-info-innr">
-                                            <span>Funds Neded<i>5000.00 USD</i></span>
-                                            <div class="expns-prg" id="expns-prg1"></div>
-                                            <span>Still Required<i>2539.00 USD</i></span>
+                            <?php if ($donations != null) {
+                                foreach ($donations as $donation){?>
+                                    <div class="col-md-4 col-sm-6 col-lg-4">
+                                        <div class="expns-box">
+                                            <img src="assets/img/charity.jpg" alt="expns-img1.jpg">
+                                            <div class="expns-info">
+                                                <h4><a title=""><?php echo $donation["Donation_Title"]?></a></h4>
+                                                <p><?php echo $donation["Donation_Content"]?></p>
+                                                <div class="expns-info-innr">
+                                                    <span>Funds Neded<i>CA$<?php echo number_format($donation["Funds_Needed"], 2, '.', ','); ?></i></span>
+                                                    <div class="expns-prg" id="expns-prg1"></div>
+                                                    <?php $req = $donation["Funds_Needed"] - $donation["Funds_Received"]?>
+                                                    <span>Still Required<i>CA$<?php echo number_format($req, 2, '.', ','); ?></i></span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-lg-4">
+                                    <?php }
+                            }?>
+                            <!-- <div class="col-md-4 col-sm-6 col-lg-4">
                                 <div class="expns-box">
                                 <img src="assets/img/charity.jpg" alt="expns-img1.jpg">
                                     <div class="expns-info">
@@ -107,8 +115,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-lg-4">
+                            </div> -->
+                            <!-- <div class="col-md-4 col-sm-6 col-lg-4">
                                 <div class="expns-box">
                                 <img src="assets/img/charity.jpg" alt="expns-img1.jpg">
                                     <div class="expns-info">
@@ -121,7 +129,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

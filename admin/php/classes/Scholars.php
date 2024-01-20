@@ -37,9 +37,11 @@ class Scholars{
                 return ['status'=> 303, 'message'=> 'Large Image ,Max Size allowed 2MB '];
             }else{
                 $uniqueImageName = time()."_".$file['name'];
-                if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/scholars/".$uniqueImageName)) {
-					$q = $this->con->query("INSERT INTO `scholars`(`Scholar_Name`, `Scholar_Description`, `Scholar_Email`, `Twitter`, `Facebook`, `Youtube`, `Scholar_Image`) VALUES ('$name', '$description', '$email', '$twitter', '$facebook', '$youtube', '$uniqueImageName')");
-					if ($q) {
+                if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/scholars/".$uniqueImageName)) {
+					$query = "INSERT INTO `scholars`(`Scholar_Name`, `Scholar_Description`, `Scholar_Email`, `Twitter`, `Facebook`, `Youtube`, `Scholar_Image`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    $stmt = $this->con->prepare($query);
+                    $stmt->bind_param("sssssss", $name, $description, $email, $twitter, $facebook, $youtube, $uniqueImageName);
+					if ($stmt->execute()) {
 						return ['status'=> 200, 'message'=> 'Scholar Created Successfully..!'];
 					}else{
 						return ['status'=> 303, 'message'=> 'Failed to run query'];
@@ -67,7 +69,7 @@ class Scholars{
                     return ['status'=> 303, 'message'=> 'Large Image ,Max Size allowed 2MB '];
                 }else{
                     $uniqueImageName = time()."_".$file['name'];
-                    if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/scholars/".$uniqueImageName)) {
+                    if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/scholars/".$uniqueImageName)) {
                         $q = $this->con->query("UPDATE `scholars` SET 
                         `Scholar_Name` = '$name', 
                         `Scholar_Description` = '$description',

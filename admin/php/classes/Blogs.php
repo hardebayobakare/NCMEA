@@ -67,11 +67,13 @@ class Blogs{
                         $uniqueImageName1 = time()."_".$file1['name'];
                         $uniqueImageName2 = time()."1_".$file2['name'];
                         $datetime = $date ." ". $time;
-                        // return ['status'=> 303, 'message'=> $category_id];
-                        if (move_uploaded_file($file1['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/blogs/".$uniqueImageName1)) {
-                            if (move_uploaded_file($file2['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/blogs/".$uniqueImageName2)) {
-                                $q = $this->con->query("INSERT INTO `blogs`(`Blog_Title`, `Date`, `Time`, `Author`, `Blog_Cat_ID`, `Blog_Content`, `Paragraph_2`, `Paragraph_3`, `Special_Quote`, `Blog_Image_B`, `Blog_Image_S`) VALUES ('$title', '$date', '$datetime', '$author', '$category_id', '$content', '$para_2', '$para_3', '$quote', '$uniqueImageName1', '$uniqueImageName2')");
-                                if ($q) {
+                        $query = "INSERT INTO `blogs`(`Blog_Title`, `Date`, `Time`, `Author`, `Blog_Cat_ID`, `Blog_Content`, `Paragraph_2`, `Paragraph_3`, `Special_Quote`, `Blog_Image_B`, `Blog_Image_S`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        $stmt = $this->con->prepare($query);
+                        $stmt->bind_param("ssssissssss", $title, $date, $datetime, $author, $category_id, $content, $para_2, $para_3, $quote, $uniqueImageName1, $uniqueImageName2);
+                        if (move_uploaded_file($file1['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/blogs/".$uniqueImageName1)) {
+                            if (move_uploaded_file($file2['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/blogs/".$uniqueImageName2)) {
+                                // $q = $this->con->query("INSERT INTO `blogs`(`Blog_Title`, `Date`, `Time`, `Author`, `Blog_Cat_ID`, `Blog_Content`, `Paragraph_2`, `Paragraph_3`, `Special_Quote`, `Blog_Image_B`, `Blog_Image_S`) VALUES ('$title', '$date', '$datetime', '$author', '$category_id', '$content', '$para_2', '$para_3', '$quote', '$uniqueImageName1', '$uniqueImageName2')");
+                                if ($stmt->execute()) {
                                     $q = $this->con->query("UPDATE `blog_cats` SET `Number` = `Number` + 1 WHERE `BLog_Cat_ID` = '$category_id'");
                                     return ['status'=> 200, 'message'=> 'Blog Created Successfully..!'];
                                 }else{
@@ -153,7 +155,7 @@ class Blogs{
                     return ['status'=> 303, 'message'=> 'Large Preview Image ,Max Size allowed 2MB '];
                 }else{
                     $uniqueImageName = time()."_".$file['name'];
-                    if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/blogs/".$uniqueImageName)) {
+                    if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/blogs/".$uniqueImageName)) {
                         $q = $this->con->query("UPDATE `blogs` SET 
                         `Blog_Title` = '$title',
                         `Date` = '$date',
@@ -199,7 +201,7 @@ class Blogs{
                     return ['status'=> 303, 'message'=> 'Large Content Image ,Max Size allowed 2MB '];
                 }else{
                     $uniqueImageName = time()."_".$file['name'];
-                    if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/blogs/".$uniqueImageName)) {
+                    if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/blogs/".$uniqueImageName)) {
                         $q = $this->con->query("UPDATE `blogs` SET 
                         `Blog_Title` = '$title',
                         `Date` = '$date',
@@ -249,8 +251,8 @@ class Blogs{
                         $uniqueImageName1 = time()."_".$file1['name'];
                         $uniqueImageName2 = time()."1_".$file2['name'];
                         $datetime = $date ." ". $time;
-                        if (move_uploaded_file($file1['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/blogs/".$uniqueImageName1)) {
-                            if (move_uploaded_file($file2['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/blogs/".$uniqueImageName2)) {
+                        if (move_uploaded_file($file1['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/blogs/".$uniqueImageName1)) {
+                            if (move_uploaded_file($file2['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/blogs/".$uniqueImageName2)) {
                                 $q = $this->con->query("UPDATE `blogs` SET 
                                     `Blog_Title` = '$title',
                                     `Date` = '$date',
@@ -293,7 +295,21 @@ class Blogs{
         if ($id != null) {
             $q = $this->con->query("DELETE FROM blog_cats WHERE `Blog_Cat_ID` = '$id'");
             if ($q) {
-                return ['status'=> 200, 'message'=> 'Event Successfully removed'];
+                return ['status'=> 200, 'message'=> 'Blog Successfully removed'];
+            }else{
+                return ['status'=> 303, 'message'=> 'Category is currently used in a Blog'];
+            }
+            
+        }else{
+            return ['status'=> 303, 'message'=>'Invalid event id'];
+        }
+    }
+    
+    public function deleteBlog($id = null){
+        if ($id != null) {
+            $q = $this->con->query("DELETE FROM blogs WHERE `Blog_ID` = '$id'");
+            if ($q) {
+                return ['status'=> 200, 'message'=> 'Blog Successfully removed'];
             }else{
                 return ['status'=> 303, 'message'=> 'Category is currently used in a Blog'];
             }
@@ -432,7 +448,6 @@ if (isset($_POST['edit_blog'])){
 
 }
 
-
 //Delete Blog Category
 if (isset($_POST['DELETE_BLOGCAT'])) {
 	$b = new Blogs();
@@ -447,5 +462,21 @@ if (isset($_POST['DELETE_BLOGCAT'])) {
         exit();
     }
 }
+
+//Delete Blog Category
+if (isset($_POST['DELETE_BLOG'])) {
+	$b = new Blogs();
+    extract($_POST);
+    if(!empty($_POST['bid'])){
+        $bid = $_POST['bid'];
+        $result = $b->deleteBlog($bid);
+        echo json_encode($result);
+        exit();
+    }else{
+        echo json_encode(['status'=> 303, 'message'=> 'Invalid Blog  id']);
+        exit();
+    }
+}
+
 
 ?>

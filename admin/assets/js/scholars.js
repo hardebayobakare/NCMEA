@@ -128,3 +128,8 @@ $(document.body).on('click', '.delete-scholar', function(){
         });
     }
 });
+
+$(".add-scholar-modal").on("click", function(){
+    $("#add-scholar-form").trigger("reset");
+    $(".modal-backdrop").remove();
+});

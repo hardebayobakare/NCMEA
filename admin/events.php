@@ -30,7 +30,7 @@
                     </div>
 
                     <div>
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+							<button type="button" class="btn btn-primary add-event-modal" data-bs-toggle="modal"
 								data-bs-target="#addEvent"> Create New Event
 							</button>
 						</div>
@@ -57,6 +57,29 @@
                         </div>
                     </div>
 				</div>
+                <br><br>
+                <div class="row" id="vol-list">
+                    <h5 class="vol-detail" id="needed">Number of Volunteers Need: 10</h5>
+                    <h5 class="vol-detail" id="registered">Number of Volunteers Registered: 5</h5>
+                    <div class="col-12">
+                        <div class="ec-vendor-list card card-default">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="volunteer-list" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone Number</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+
                 <!-- View Image MOdal  -->
                 <div class="modal fade modal-add-contact" id="viewImage1" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -173,6 +196,34 @@
                         </div>
                     </div>
                 </div>
+                <!-- Event Volunteers -->
+                <div class="modal fade modal-add-contact" id="reqVolunteer" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <form id="add-volunteer-form" enctype="multipart/form-data">
+                                <div class="modal-header px-4">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Request Volunteers for Event</h5>
+                                </div>
+                                <div class="modal-body px-4">
+                                    <div class="row mb-2">
+                                        <div class="form-group">
+                                            <label for="title">How many Volunteer do you Require for this Event</label>
+                                            <input type="number" class="form-control" id="volunteer" name="volunteer" placeholder=0>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="add_volunteer" value="1">
+                                <input type="hidden" name="id">
+                                <div class="modal-footer px-4">
+                                    <button type="button" class="btn btn-secondary btn-pill cancel-btn"
+                                        data-bs-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-primary btn-pill add-volunteer">Save Volunteer Request</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
             </div> <!-- End Content -->
         </div> <!-- End Content Wrapper -->
@@ -188,6 +239,12 @@
 
 <!-- Data Tables -->
 <script src='assets/plugins/data-tables/jquery.datatables.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/2.3.5/js/dataTables.buttons.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js'></script>
+<script src='https://cdn.datatables.net/buttons/2.3.5/js/buttons.html5.min.js'></script>
+<script src='https://cdn.datatables.net/buttons/2.3.5/js/buttons.print.min.js'></script>
 <script src='assets/plugins/data-tables/datatables.bootstrap5.min.js'></script>
 <script src='assets/plugins/data-tables/datatables.responsive.min.js'></script>
 

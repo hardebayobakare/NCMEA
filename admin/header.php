@@ -25,7 +25,7 @@
 		<!-- PLUGINS CSS STYLE -->
 		<link href="assets/plugins/simplebar/simplebar.css" rel="stylesheet" />
 
-		<!-- Bank Assessment CSS -->
+		<!-- NCMEA CSS -->
 		<link id="bankass-css" rel="stylesheet" href="assets/css/ncmea.css" />
 		
 		<!-- Data Tables -->
@@ -33,6 +33,9 @@
 		<link href='https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css' rel='stylesheet'>
 		<link href='https://cdn.datatables.net/buttons/2.3.5/css/buttons.dataTables.min.css' rel='stylesheet'>
 		<link href='assets/plugins/data-tables/responsive.datatables.min.css' rel='stylesheet'>
+		
+		<!-- SPINNER -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 		
 		<!-- FAVICON -->
 		<!-- <link href="assets/img/favicon.png" rel="shortcut icon" /> -->

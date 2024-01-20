@@ -2795,14 +2795,31 @@ footer {
   -o-transform: rotate(-47deg);
   transform: rotate(-47deg);
 }
+
+.modal-content{
+  padding-left: 20px;
+  padding-right: 20px;
+  align-items: center;
+}
+.volunteer-btn{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
 .logo-title{
     display: none;
+}
+.quran{
+  text-align: center;
+  font-size: 27px;
 }
 
 .donate{
   word-wrap: break-word;
 }
-@media(min-width: 600px){
+@media(min-width: 490px){
   .logo-title{
     display: block;
   }

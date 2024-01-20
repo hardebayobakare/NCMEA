@@ -5,8 +5,8 @@
  */
 
 define("DB_HOST", "localhost");
-define("DB_USER", "root");
-define("DB_PASSWORD", "");
-define("DB_DATABASE", "ncmea");
+define("DB_USER", "thencmeo_admin");
+define("DB_PASSWORD", "K+j4q2r^@P]6");
+define("DB_DATABASE", "thencmeo_main");
 
 ?>

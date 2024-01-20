@@ -38,7 +38,7 @@ class Events{
                 return ['status'=> 303, 'message'=> 'Large Image ,Max Size allowed 2MB '];
             }else{
                 $uniqueImageName = time()."_".$file['name'];
-                if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/events/".$uniqueImageName)) {
+                if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/events/".$uniqueImageName)) {
 					$q = $this->con->query("INSERT INTO `events`(`Event_Title`, `Event_Content`, `Event_Location`, `Event_Date`, `Event_Image`, `Event_Time`) VALUES ('$title', '$content', '$location', '$date', '$uniqueImageName', '$datetime')");
 					if ($q) {
 						return ['status'=> 200, 'message'=> 'Event Created Successfully..!'];
@@ -68,7 +68,7 @@ class Events{
                     return ['status'=> 303, 'message'=> 'Large Image ,Max Size allowed 2MB '];
                 }else{
                     $uniqueImageName = time()."_".$file['name'];
-                    if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/events/".$uniqueImageName)) {
+                    if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/events/".$uniqueImageName)) {
                         $q = $this->con->query("UPDATE `events` SET 
                         `Event_Title` = '$title', 
                         `Event_Content` = '$content',
@@ -108,7 +108,7 @@ class Events{
                     return ['status'=> 303, 'message'=> 'Large Video ,Max Size allowed 10MB '];
                 }else{
                     $uniqueVideoName = time()."_".$file['name'];
-                    if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/video/events/".$uniqueVideoName)) {
+                    if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/video/events/".$uniqueVideoName)) {
                         $q = $this->con->query("UPDATE `events` SET 
                         `Event_Title` = '$title', 
                         `Event_Content` = '$content',
@@ -156,8 +156,8 @@ class Events{
                     }else{
                         $uniqueImageName = time()."_".$file1['name'];
                         $uniqueVideoName = time()."_".$file2['name'];
-                        if (move_uploaded_file($file1['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/events/".$uniqueImageName)) {
-                            if(move_uploaded_file($file2['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/video/events/".$uniqueVideoName)){
+                        if (move_uploaded_file($file1['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/events/".$uniqueImageName)) {
+                            if(move_uploaded_file($file2['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/video/events/".$uniqueVideoName)){
                                 $q = $this->con->query("UPDATE `events` SET 
                                 `Event_Title` = '$title', 
                                 `Event_Content` = '$content',
@@ -215,16 +215,76 @@ class Events{
     //Delete Even DB Query
     public function deleteEvent($id = null){
         if ($id != null) {
-			$q = $this->con->query("DELETE FROM events WHERE `Event_ID` = '$id'");
-			if ($q) {
-				return ['status'=> 200, 'message'=> 'Event Successfully removed'];
-			}else{
-				return ['status'=> 303, 'message'=> 'Failed to run query'];
-			}
-			
+            $q1 = $this->con->query("DELETE FROM volunteers WHERE `Event_ID` = '$id'");
+            if($q1){
+                $q = $this->con->query("DELETE FROM events WHERE `Event_ID` = '$id'");
+                if ($q) {
+                    return ['status'=> 200, 'message'=> 'Event Successfully removed'];
+                }else{
+                    return ['status'=> 303, 'message'=> 'Failed to run query'];
+                }
+            }else{
+                return ['status'=> 303, 'message'=> 'Failed to run query'];
+            }	
 		}else{
 			return ['status'=> 303, 'message'=>'Invalid event id'];
 		}
+    }
+
+    public function updateVolunteer($id, $volunteer){
+        if($id != null){
+            $q = $this->con->query("UPDATE `events` SET 
+                        `Volunteer` = '$volunteer'
+                        WHERE `Event_ID` = '$id'");
+                        
+            if ($q) {
+                return ['status'=> 200, 'message'=> 'Event Volunteer Updated Successfully..!'];
+            }else{
+                return ['status'=> 303, 'message'=> 'Failed to run query'];
+            }
+        }else{
+            return ['status'=> 303, 'message'=> 'Invalid Event ID'];
+        }
+    }
+
+    //Get All Event DB Query
+    public function getVolunteer($eid){
+        $result = $this->con->query("SELECT * FROM events WHERE `Event_ID` = '$eid'");
+        $events = array();
+        while($item = $result->fetch_assoc())
+            $events[] = $item;
+        if(!empty($events != 0)){
+            return $events; 
+        }else{
+            return NULL;
+        }
+    }
+
+    //Get All Event DB Query
+    public function getVolunteers($id){
+        $result = $this->con->query("SELECT * FROM volunteers WHERE `Event_ID` = '$id'");
+        $events = array();
+        while($item = $result->fetch_assoc())
+            $events[] = $item;
+        if(!empty($events != 0)){
+            return $events; 
+        }else{
+            return NULL;
+        }
+    }
+
+    //Get All Event DB Query
+    public function stopVolunteer($id){
+        if($id != null){
+            $q = $this->con->query("UPDATE events SET Volunteer = '0' WHERE `Event_ID` = '$id'");
+            if ($q) {
+                return ['status'=> 200, 'message'=> 'Event Volunteer Updated Successfully..!'];
+            }else{
+                return ['status'=> 303, 'message'=> 'Failed to run query'];
+            }
+        }else{
+            return ['status'=> 303, 'message'=> 'Invalid Event ID'];
+        }
     }
 }
 
@@ -305,6 +365,57 @@ if (isset($_POST['DELETE_EVENT'])) {
     if(!empty($_POST['eid'])){
         $eid = $_POST['eid'];
         $result = $e->deleteEvent($eid);
+        echo json_encode($result);
+        exit();
+    }else{
+        echo json_encode(['status'=> 303, 'message'=> 'Invalid event id']);
+        exit();
+    }
+}
+
+//Add Event
+if (isset($_POST['add_volunteer'])){
+    $e = new Events();
+    extract($_POST);
+    if(empty($volunteer)){
+        echo json_encode(['status'=> 303, 'message'=> 'Enter Number of Volunteers Needed']);//
+        exit();
+    }else{
+        $result = $e->updateVolunteer($id, $volunteer);
+        echo json_encode($result);
+        exit();
+    }
+}
+
+//Get Volunteer
+if (isset($_POST['GET_VOLUNTEER'])) {
+	$e = new Events();
+    extract($_POST);
+    if(!empty($_POST['eid'])){
+        $eid = $_POST['eid'];
+        $result = $e->getVolunteer($eid);
+        echo json_encode($result);
+        exit();
+    }else{
+        echo json_encode(['status'=> 303, 'message'=> 'Invalid event id']);
+        exit();
+    }
+}
+//Get Volunteer
+if (isset($_GET['GET_VOLUNTEERS'])) {
+	$e = new Events();
+    $json_data['data'] = $e->getVolunteers($_GET['id']);
+    echo json_encode($json_data);
+    exit();
+}
+
+//Stop Volunteer
+if (isset($_POST['STOP_VOLUNTEER'])) {
+	$e = new Events();
+    extract($_POST);
+    if(!empty($_POST['eid'])){
+        $eid = $_POST['eid'];
+        $result = $e->stopVolunteer($eid);
         echo json_encode($result);
         exit();
     }else{
