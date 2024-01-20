@@ -60,9 +60,10 @@ class Credentials{
         }else{
             $date = date("Y-m-d");
             $password = password_hash($password, PASSWORD_BCRYPT, ["COST"=> 8]);
-            $result = $this->con->query("INSERT INTO users (`Name`, `Email`, `Address`,`Password`, `Phone`, `Reg_Date`, `User_Type`) VALUES ('$name', '$email', '$address', '$password','$phone', '$date', '1')");
-
-            if ($result) {
+            $query = "INSERT INTO users (`Name`, `Email`, `Address`,`Password`, `Phone`, `Reg_Date`, `User_Type`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $this->con->prepare($query);
+            $stmt->bind_param("sssssss", $name, $email, $address, $password,$phone, $date, '1');
+            if ($stmt->execute()) {
                 return ['status'=> 200, 'message'=> 'Account Created Successfully'];
             }
         }
