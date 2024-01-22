@@ -39,8 +39,10 @@ class Events{
             }else{
                 $uniqueImageName = time()."_".$file['name'];
                 if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/events/".$uniqueImageName)) {
-					$q = $this->con->query("INSERT INTO `events`(`Event_Title`, `Event_Content`, `Event_Location`, `Event_Date`, `Event_Image`, `Event_Time`) VALUES ('$title', '$content', '$location', '$date', '$uniqueImageName', '$datetime')");
-					if ($q) {
+					$query = "INSERT INTO `events`(`Event_Title`, `Event_Content`, `Event_Location`, `Event_Date`, `Event_Image`, `Event_Time`) VALUES (?, ?, ?, ?, ?, ?)";
+                    $stmt = $this->con->prepare($query);
+                    $stmt->bind_param("ssssss", $title, $content, $location, $date, $uniqueImageName, $datetime);
+					if ($stmt->execute()) {
 						return ['status'=> 200, 'message'=> 'Event Created Successfully..!'];
 					}else{
 						return ['status'=> 303, 'message'=> 'Failed to run query'];
@@ -57,11 +59,12 @@ class Events{
     }
 
     //Edit Event with Image DB Query
-    public function editEventWithImage($id, $title, $content, $location, $date, $file){
+    public function editEventWithImage($id, $title, $content, $location, $date, $time, $file){
         $fileName = $file['name'];
 		$fileNameAr= explode(".", $fileName);
 		$extension = end($fileNameAr);
 		$ext = strtolower($extension);
+        $datetime = $date ." ". $time;
         if($id != null){
             if ($ext == "jpg" || $ext == "jpeg" || $ext == "png") {
                 if (($file['size']) > (2097152)) {
@@ -69,15 +72,17 @@ class Events{
                 }else{
                     $uniqueImageName = time()."_".$file['name'];
                     if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/events/".$uniqueImageName)) {
-                        $q = $this->con->query("UPDATE `events` SET 
-                        `Event_Title` = '$title', 
-                        `Event_Content` = '$content',
-                        `Event_Location` = '$location',
-                        `Event_Date` = '$date',
-                        `Event_Image` = '$uniqueImageName'
-                        WHERE `Event_ID` = '$id'");
-                        
-                        if ($q) {
+                        $query = "UPDATE `events` SET 
+                        `Event_Title` = ?, 
+                        `Event_Content` = ?,
+                        `Event_Location` = ?,
+                        `Event_Date` = ?,
+                        `Event_Image` = ?,
+                        `Event_Time` = ?
+                        WHERE `Event_ID` = ?";
+                        $stmt = $this->con->prepare($query);
+                        $stmt->bind_param("ssssssi", $title, $content, $location, $date, $uniqueImageName, $datetime, $id);                       
+                        if ($stmt->execute()) {
                             return ['status'=> 200, 'message'=> 'Event Updated Successfully..!'];
                         }else{
                             return ['status'=> 303, 'message'=> 'Failed to run query'];
@@ -97,11 +102,12 @@ class Events{
         
     }
 
-    public function editEventWithVideo($id, $title, $content, $location, $date, $file){
+    public function editEventWithVideo($id, $title, $content, $location, $date, $time, $file){
         $fileName = $file['name'];
 		$fileNameAr= explode(".", $fileName);
 		$extension = end($fileNameAr);
 		$ext = strtolower($extension);
+        $datetime = $date ." ". $time;
         if($id != null){
             if ($ext == "mp4" || $ext == "avi" || $ext == "mov" || $ext == "wmv") {
                 if (($file['size']) > (10485760)) {
@@ -109,15 +115,17 @@ class Events{
                 }else{
                     $uniqueVideoName = time()."_".$file['name'];
                     if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/video/events/".$uniqueVideoName)) {
-                        $q = $this->con->query("UPDATE `events` SET 
-                        `Event_Title` = '$title', 
-                        `Event_Content` = '$content',
-                        `Event_Location` = '$location',
-                        `Event_Date` = '$date',
-                        `Event_Video` = '$uniqueVideoName'
-                        WHERE `Event_ID` = '$id'");
-                        
-                        if ($q) {
+                        $query = "UPDATE `events` SET 
+                        `Event_Title` = ?, 
+                        `Event_Content` = ?,
+                        `Event_Location` = ?,
+                        `Event_Date` = ?,
+                        `Event_Video` = ?,
+                        `Event_Time` = ?
+                        WHERE `Event_ID` = ?";
+                        $stmt = $this->con->prepare($query);
+                        $stmt->bind_param("ssssssi", $title, $content, $location, $date, $uniqueVideoName, $datatime, $id);                       
+                        if ($stmt->execute()) {
                             return ['status'=> 200, 'message'=> 'Event Updated Successfully..!'];
                         }else{
                             return ['status'=> 303, 'message'=> 'Failed to run query'];
@@ -137,7 +145,7 @@ class Events{
         
     }
 
-    public function editEventWithImageAndVideo($id, $title, $content, $location, $date, $file1, $file2){
+    public function editEventWithImageAndVideo($id, $title, $content, $location, $date, $time, $file1, $file2){
         $fileName_Image = $file1['name'];
         $fileName_Video = $file2['name'];
 		$fileNameAr_Image= explode(".", $fileName_Image);
@@ -146,6 +154,7 @@ class Events{
         $extension_Video = end($fileNameAr_Video);
 		$ext_Image = strtolower($extension_Image);
         $ext_Video = strtolower($extension_Video);
+        $datetime = $date ." ". $time;
         if($id != null){
             if ($ext_Image == "jpg" || $ext_Image == "jpeg" || $ext_Image == "png") {
                 if($ext_Video == "mp4" || $ext_Video == "avi" || $ext_Video == "mov" || $ext_Video == "wmv"){
@@ -158,16 +167,18 @@ class Events{
                         $uniqueVideoName = time()."_".$file2['name'];
                         if (move_uploaded_file($file1['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/events/".$uniqueImageName)) {
                             if(move_uploaded_file($file2['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/video/events/".$uniqueVideoName)){
-                                $q = $this->con->query("UPDATE `events` SET 
-                                `Event_Title` = '$title', 
-                                `Event_Content` = '$content',
-                                `Event_Location` = '$location',
-                                `Event_Date` = '$date',
-                                `Event_Image` = '$uniqueImageName',
-                                `Event_Video` = '$uniqueVideoName'
-                                WHERE `Event_ID` = '$id'");
-                                
-                                if ($q) {
+                                $query = "UPDATE `events` SET 
+                                `Event_Title` = ?, 
+                                `Event_Content` = ?,
+                                `Event_Location` = ?,
+                                `Event_Date` = ?,
+                                `Event_Time` = ?,
+                                `Event_Image` = ?,
+                                `Event_Video` = ?
+                                WHERE `Event_ID` = ?";
+                                $stmt = $this->con->prepare($query);
+                                $stmt->bind_param("sssssssi", $title, $content, $location, $date, $datatime, $uniqueImageName, $uniqueVideoName, $id);                       
+                                if ($stmt->execute()) {
                                     return ['status'=> 200, 'message'=> 'Event Updated Successfully..!'];
                                 }else{
                                     return ['status'=> 303, 'message'=> 'Failed to run query'];
@@ -193,16 +204,19 @@ class Events{
 
 
     //Edit Event without Image DB Query
-    public function editEventWithoutMedia($id, $title, $content, $location, $date){
+    public function editEventWithoutMedia($id, $title, $content, $location, $date, $time){
+        $datetime = $date ." ". $time;
         if($id != null){
-            $q = $this->con->query("UPDATE `events` SET 
-                        `Event_Title` = '$title', 
-                        `Event_Content` = '$content',
-                        `Event_Location` = '$location',
-                        `Event_Date` = '$date'
-                        WHERE `Event_ID` = '$id'");
-                        
-            if ($q) {
+            $query = "UPDATE `events` SET 
+            `Event_Title` = ?, 
+            `Event_Content` = ?,
+            `Event_Location` = ?,
+            `Event_Date` = ?,
+            `Event_Time` = ?
+            WHERE `Event_ID` = ?";
+            $stmt = $this->con->prepare($query);
+            $stmt->bind_param("sssssi", $title, $content, $location, $date, $datetime, $id);
+            if ($stmt->execute()) {
                 return ['status'=> 200, 'message'=> 'Event Updated Successfully..!'];
             }else{
                 return ['status'=> 303, 'message'=> 'Failed to run query'];
@@ -343,14 +357,14 @@ if (isset($_POST['edit_event'])){
         exit();
     }else{
         if(isset($_FILES['event_image']['name']) && !empty($_FILES['event_image']['name']) && isset($_FILES['event_video']['name']) && !empty($_FILES['event_video']['name'])){
-            $result = $e->editEventWithImageAndVideo($id, $title, $content, $location, $date, $_FILES['event_image'], $_FILES['event_video']);
+            $result = $e->editEventWithImageAndVideo($id, $title, $content, $location, $date, $time, $_FILES['event_image'], $_FILES['event_video']);
         }
         else if(isset($_FILES['event_image']['name']) && !empty($_FILES['event_image']['name'])){
-            $result = $e->editEventWithImage($id, $title, $content, $location, $date, $_FILES['event_image']);
+            $result = $e->editEventWithImage($id, $title, $content, $location, $date, $time, $_FILES['event_image']);
         }else if(isset($_FILES['event_video']['name']) && !empty($_FILES['event_video']['name'])){
-            $result = $e->editEventWithVideo($id, $title, $content, $location, $date, $_FILES['event_video']);
+            $result = $e->editEventWithVideo($id, $title, $content, $location, $date, $time, $_FILES['event_video']);
         }else{
-            $result = $e->editEventWithoutMedia($id, $title, $content, $location, $date);
+            $result = $e->editEventWithoutMedia($id, $title, $content, $location, $date, $time);
         }
         echo json_encode($result);
         exit();

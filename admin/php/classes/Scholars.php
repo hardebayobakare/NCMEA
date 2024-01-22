@@ -70,17 +70,18 @@ class Scholars{
                 }else{
                     $uniqueImageName = time()."_".$file['name'];
                     if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/admin/assets/img/scholars/".$uniqueImageName)) {
-                        $q = $this->con->query("UPDATE `scholars` SET 
-                        `Scholar_Name` = '$name', 
-                        `Scholar_Description` = '$description',
-                        `Scholar_Email` = '$email',
-                        `Twitter` = '$twitter',
-                        `Facebook` = '$facebook',
-                        `Youtube` = '$youtube',
-                        `Scholar_Image` = '$uniqueImageName'
-                        WHERE `Scholar_ID` = '$id'");
-                        
-                        if ($q) {
+                        $query = "UPDATE `scholars` SET 
+                        `Scholar_Name` = ?, 
+                        `Scholar_Description` = ?,
+                        `Scholar_Email` = ?,
+                        `Twitter` = ?,
+                        `Facebook` = ?,
+                        `Youtube` = ?,
+                        `Scholar_Image` = ?
+                        WHERE `Scholar_ID` = ?";
+                        $stmt = $this->con->prepare($query);
+                        $stmt->bind_param("sssssssi", $name, $description, $email, $twitter, $facebook, $youtube, $uniqueImageName, $id);                        
+                        if ($stmt->execute()) {
                             return ['status'=> 200, 'message'=> 'Scholar Updated Successfully..!'];
                         }else{
                             return ['status'=> 303, 'message'=> 'Failed to run query'];
@@ -104,16 +105,17 @@ class Scholars{
     //Edit Event without Image DB Query
     public function editScholarWithoutImage($id, $name, $description, $email, $twitter, $facebook, $youtube){
         if($id != null){
-            $q = $this->con->query("UPDATE `scholars` SET 
-                        `Scholar_Name` = '$name', 
-                        `Scholar_Description` = '$description',
-                        `Scholar_Email` = '$email',
-                        `Twitter` = '$twitter',
-                        `Facebook` = '$facebook',
-                        `Youtube` = '$youtube'
-                        WHERE `Scholar_ID` = '$id'");
-                        
-            if ($q) {
+            $query = "UPDATE `scholars` SET 
+                        `Scholar_Name` = ?, 
+                        `Scholar_Description` = ?,
+                        `Scholar_Email` = ?,
+                        `Twitter` = ?,
+                        `Facebook` = ?,
+                        `Youtube` = ?,
+                        WHERE `Scholar_ID` = ?";
+            $stmt = $this->con->prepare($query);
+            $stmt->bind_param("ssssssi", $name, $description, $email, $twitter, $facebook, $youtube, $id);   
+            if ($stmt->execute()) {
                 return ['status'=> 200, 'message'=> 'Scholar Updated Successfully..!'];
             }else{
                 return ['status'=> 303, 'message'=> 'Failed to run query'];

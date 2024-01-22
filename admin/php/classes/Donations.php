@@ -37,15 +37,16 @@ class Donations{
                 }else{
                     $uniqueImageName = time()."_".$file['name'];
                     if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/donations/".$uniqueImageName)) {
-                        $q = $this->con->query("UPDATE `donations` SET 
-                        `Donation_Title` = '$title', 
-                        `Donation_Content` = '$content',
-                        `Funds_Needed` = '$f_required',
-                        `Funds_Received` = '$f_received',
-                        `Donation_Image` = '$uniqueImageName'
-                        WHERE `Donation_ID` = '$id'");
-                        
-                        if ($q) {
+                        $query = "UPDATE `donations` SET 
+                        `Donation_Title` = ?, 
+                        `Donation_Content` = ?,
+                        `Funds_Needed` = ?,
+                        `Funds_Received` = ?,
+                        `Donation_Image` = ?
+                        WHERE `Donation_ID` = ?";
+                        $stmt = $this->con->prepare($query);
+                        $stmt->bind_param("sssssi", $title, $content, $f_required, $f_received, $uniqueImageName, $id);                        
+                        if ($stmt->execute()) {
                             return ['status'=> 200, 'message'=> 'Donation Updated Successfully..!'];
                         }else{
                             return ['status'=> 303, 'message'=> 'Failed to run query'];
@@ -67,14 +68,15 @@ class Donations{
 
     public function editDonationWithoutMedia($id, $title, $content, $f_required, $f_received){
         if($id != null){
-            $q = $this->con->query("UPDATE `donations` SET 
-                        `Donation_Title` = '$title', 
-                        `Donation_Content` = '$content',
-                        `Funds_Needed` = '$f_required',
-                        `Funds_Received` = '$f_received'
-                        WHERE `Donation_ID` = '$id'");
-                        
-            if ($q) {
+            $query = "UPDATE `donations` SET 
+                        `Donation_Title` = ?, 
+                        `Donation_Content` = ?,
+                        `Funds_Needed` = ?,
+                        `Funds_Received` = ?
+                        WHERE `Donation_ID` = ?";
+            $stmt = $this->con->prepare($query);
+            $stmt->bind_param("sssssi", $title, $content, $f_required, $f_received, $id);                        
+            if ($stmt->execute()) {
                 return ['status'=> 200, 'message'=> 'Donation Updated Successfully..!'];
             }else{
                 return ['status'=> 303, 'message'=> 'Failed to run query'];
@@ -110,8 +112,10 @@ class Donations{
             }else{
                 $uniqueImageName = time()."_".$file['name'];
                 if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/ncmea/admin/assets/img/donations/".$uniqueImageName)) {
-                    $q = $this->con->query("INSERT INTO `donations`(`Donation_Title`, `Donation_Content`, `Funds_Needed`, `Funds_Received`, `Donation_Image`) VALUES ('$title', '$content', '$f_required', '$f_received', '$uniqueImageName')");
-                    if ($q) {
+                    $query = "INSERT INTO `donations`(`Donation_Title`, `Donation_Content`, `Funds_Needed`, `Funds_Received`, `Donation_Image`) VALUES (?, ?, ?, ?, ?)";
+                    $stmt = $this->con->prepare($query);
+                    $stmt->bind_param("sssss", $title, $content, $f_required, $f_received, $uniqueImageName);
+                    if ($stmt->execute()) {
                         return ['status'=> 200, 'message'=> 'Donation Created Successfully..!'];
                     }else{
                         return ['status'=> 303, 'message'=> 'Failed to run query'];
