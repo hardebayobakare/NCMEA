@@ -16,9 +16,9 @@ jobs:
       - name: Upload to FTP server
         uses: SamKirkland/FTP-Deploy-Action@4.3.1
         with:
-          ftp-server: ${{ secrets.HOST }}
-          ftp-username: ${{ secrets.USERNAME }}
-          ftp-password: ${{ secrets.PASSWORD }}
+          server: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           local-dir: ./
           server-dir: /home2/thencmeo/public_html/  # Directory on the Bluehost server
           exclude: |
