@@ -93,17 +93,17 @@
                                             <h3>Prayer <span>Times</span></h3>
                                         </div>
                                     </div>
-                                    <iframe style="width: 500px; height: 358px; border: 5px solid #2a486c; font-size: 50px; background-color: transparent" scrolling="no" src="https://www.islamicfinder.org/prayer-widget/"> </iframe>
-                                    <!-- <ul class="prayer-times">
+                                    <!--<iframe style="width: 500px; height: 358px; border: 5px solid #2a486c; font-size: 50px; background-color: transparent" scrolling="no" src="https://www.islamicfinder.org/prayer-widget/"> </iframe>-->
+                                     <ul class="prayer-times">
                                         <li class="pry-tim-hed"><span>Salat</span><span>Start</span><span>Iqamah</span></li>
-                                        <li><span class="thm-clr">Fajar</span><span>03:58 am</span><span>04:45 am</span></li>
-                                        <li><span class="thm-clr">Sunrise</span><span>05:31 am</span><span>05:31 am</span></li>
-                                        <li><span class="thm-clr">Zuhr</span><span>12:47 pm</span><span>12:47 pm</span></li>
-                                        <li><span class="thm-clr">Asr</span><span>05:53 pm</span><span>05:50 pm</span></li>
-                                        <li><span class="thm-clr">Maghrib</span><span>08:04 pm</span><span>08:04 pm</span></li>
-                                        <li><span class="thm-clr">Isha</span><span>09:37 pm</span><span>09:30 pm</span></li>
-                                        <li><span class="thm-clr">Jumu'ah 1</span><span>01:15 pm</span><span>01:15 pm</span></li>
-                                    </ul> -->
+                                        <!--<li><span class="thm-clr">Fajar</span><span>03:58 am</span><span>04:45 am</span></li>-->
+                                        <!--<li><span class="thm-clr">Sunrise</span><span>05:31 am</span><span>05:31 am</span></li>-->
+                                        <!--<li><span class="thm-clr">Zuhr</span><span>12:47 pm</span><span>12:47 pm</span></li>-->
+                                        <!--<li><span class="thm-clr">Asr</span><span>05:53 pm</span><span>05:50 pm</span></li>-->
+                                        <!--<li><span class="thm-clr">Maghrib</span><span>08:04 pm</span><span>08:04 pm</span></li>-->
+                                        <!--<li><span class="thm-clr">Isha</span><span>09:37 pm</span><span>09:30 pm</span></li>-->
+                                        <!--<li><span class="thm-clr">Jumu'ah 1</span><span>01:15 pm</span><span>01:15 pm</span></li>-->
+                                    </ul>
                                 </div>
                             </div>
                         </div><!-- About Wrap -->

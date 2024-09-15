@@ -1,0 +1,75 @@
+name: Deploy to Bluehost
+
+on:
+  push:
+    branches:
+      - main  # Change if you use a different branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY}}
+      USERNAME: ${{ secrets.USERNAME }}
+      HOST: ${{ secrets.HOST }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_USER: ${{ secrets-DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_DATABASE: ${{ secrets.DB_DATABASE }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Clean remote directory
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: $HOST
+          username: $USERNAME
+          key: $SSH_PRIVATE_KEY
+          port: 22
+          script: |
+            rm -rf /home2/thencmeo/public_html/*
+            mkdir -p /home2/thencmeo/public_html
+
+      - name: Upload files via SFTP
+        uses: appleboy/scp-action@v0.1.1
+        with:
+          host: $HOST
+          username: $secrets.USERNAME
+          key: $secrets.SSH_PRIVATE_KEY
+          source: "public/*"
+          target: "/home2/thencmeo/public_html/"
+      
+      - name: Add or update config.php files on server
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cat <<EOT > /home2/thencmeo/public_html/config/config.php
+            <?php
+            /*
+            * Database Configuration
+            */
+            define("DB_HOST", "$DB_HOST");
+            define("DB_USER", "$DB_USER");
+            define("DB_PASSWORD", "$DB_PASSWORD");
+            define("DB_DATABASE", "$DB_DATABASE");
+            ?>
+            EOT
+
+            cat <<EOT > /home2/thencmeo/public_html/admin/config/config.php
+            <?php
+            /*
+            * Database Configuration
+            */
+            define("DB_HOST", "$DB_HOST");
+            define("DB_USER", "$DB_USER");
+            define("DB_PASSWORD", "$DB_PASSWORD");
+            define("DB_DATABASE", "$.DB_DATABASE");
+            ?>
+            EOT

@@ -22,3 +22,10 @@
 [01-Sep-2023 10:22:21 America/Boise] PHP Warning:  Trying to access array offset on value of type null in /home2/thencmeo/public_html/blog-detail.php on line 71
 [01-Sep-2023 10:22:21 America/Boise] PHP Warning:  Undefined array key 0 in /home2/thencmeo/public_html/blog-detail.php on line 72
 [01-Sep-2023 10:22:21 America/Boise] PHP Warning:  Trying to access array offset on value of type null in /home2/thencmeo/public_html/blog-detail.php on line 72
+[09-Jun-2024 21:47:42 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: Too many connections in /home2/thencmeo/public_html/config/db_connect.php:12
+Stack trace:
+#0 /home2/thencmeo/public_html/config/db_connect.php(12): mysqli->__construct('localhost', 'thencmeo_admin', Object(SensitiveParameterValue), 'thencmeo_main')
+#1 /home2/thencmeo/public_html/config/db_function.php(7): DB_Connect->connect()
+#2 /home2/thencmeo/public_html/index.php(7): DB_Functions->__construct()
+#3 {main}
+  thrown in /home2/thencmeo/public_html/config/db_connect.php on line 12

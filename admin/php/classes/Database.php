@@ -6,8 +6,10 @@
 
 class Database{
 	private $con;
+	
 	public function connect(){
-		$this->con = new Mysqli("", "", "", "");
+		require_once '../../config/config.php';
+		$this->con = new Mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 		return $this->con;
 	}
 

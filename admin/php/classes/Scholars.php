@@ -111,7 +111,7 @@ class Scholars{
                         `Scholar_Email` = ?,
                         `Twitter` = ?,
                         `Facebook` = ?,
-                        `Youtube` = ?,
+                        `Youtube` = ?
                         WHERE `Scholar_ID` = ?";
             $stmt = $this->con->prepare($query);
             $stmt->bind_param("ssssssi", $name, $description, $email, $twitter, $facebook, $youtube, $id);   
