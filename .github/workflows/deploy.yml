@@ -27,35 +27,35 @@ jobs:
             **/yarn.lock
             **/.github/**
 
-      - name: Add or update config.php files on server
+      - name: Create config.php file for the root
         run: |
-          echo "Updating config.php files on the server"
+          echo "<?php
+          /*
+           * Database Configuration
+           */
+          define('DB_HOST', '${{ secrets.DB_HOST }}');
+          define('DB_USER', '${{ secrets.DB_USER }}');
+          define('DB_PASSWORD', '${{ secrets.DB_PASSWORD }}');
+          define('DB_DATABASE', '${{ secrets.DB_DATABASE }}');
+          ?>" > config.php
+
+      - name: Upload config.php to /config/
+        run: |
           ftp -inv ${{ secrets.HOST }} <<EOF
           user ${{ secrets.USERNAME }} ${{ secrets.PASSWORD }}
           cd /public_html/config/
-          put <(echo "
-          <?php
-          /*
-           * Database Configuration
-           */
-          define('DB_HOST', '${{ secrets.DB_HOST }}');
-          define('DB_USER', '${{ secrets.DB_USER }}');
-          define('DB_PASSWORD', '${{ secrets.DB_PASSWORD }}');
-          define('DB_DATABASE', '${{ secrets.DB_DATABASE }}');
-          ?>
-          ") config.php
-          cd ..
-          cd /public_html/admin/config/
-          put <(echo "
-          <?php
-          /*
-           * Database Configuration
-           */
-          define('DB_HOST', '${{ secrets.DB_HOST }}');
-          define('DB_USER', '${{ secrets.DB_USER }}');
-          define('DB_PASSWORD', '${{ secrets.DB_PASSWORD }}');
-          define('DB_DATABASE', '${{ secrets.DB_DATABASE }}');
-          ?>
-          ") config.php
+          put config.php
           bye
           EOF
+
+      - name: Upload config.php to /admin/config/
+        run: |
+          ftp -inv ${{ secrets.HOST }} <<EOF
+          user ${{ secrets.USERNAME }} ${{ secrets.PASSWORD }}
+          cd /public_html/admin/config/
+          put config.php
+          bye
+          EOF
+
+      - name: Cleanup local config.php file
+        run: rm config.php
