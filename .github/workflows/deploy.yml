@@ -19,8 +19,8 @@ jobs:
           server: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          local-dir: ./
-          server-dir: /home2/thencmeo/public_html/  # Directory on the Bluehost server
+          local-dir: ./  # Root of the GitHub repository
+          server-dir: /public_html/  # Correct absolute path to public_html
           exclude: |
             **/.git*
             **/node_modules/**
@@ -30,9 +30,9 @@ jobs:
       - name: Add or update config.php files on server
         run: |
           echo "Updating config.php files on the server"
-          ftp -inv ${{ secrets.FTP_SERVER }} <<EOF
-          user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}
-          cd /home2/thencmeo/public_html/config/
+          ftp -inv ${{ secrets.HOST }} <<EOF
+          user ${{ secrets.USERNAME }} ${{ secrets.PASSWORD }}
+          cd /public_html/config/
           put <(echo "
           <?php
           /*
@@ -45,7 +45,7 @@ jobs:
           ?>
           ") config.php
           
-          cd /home2/thencmeo/public_html/admin/config/
+          cd /public_html/admin/config/
           put <(echo "
           <?php
           /*
