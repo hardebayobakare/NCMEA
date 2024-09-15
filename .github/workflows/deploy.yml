@@ -44,7 +44,7 @@ jobs:
           define('DB_DATABASE', '${{ secrets.DB_DATABASE }}');
           ?>
           ") config.php
-          
+          cd ..
           cd /public_html/admin/config/
           put <(echo "
           <?php
