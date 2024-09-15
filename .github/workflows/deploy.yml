@@ -13,71 +13,46 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Clean remote directory
-        uses: appleboy/ssh-action@master
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.5.4
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          port: 22
-          ssh_config: |
-            Host *
-              KexAlgorithms +diffie-hellman-group-exchange-sha256
-              HostkeyAlgorithms +ssh-rsa
-          script: |
-            rm -rf /home2/thencmeo/public_html/*
-            mkdir -p /home2/thencmeo/public_html
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Configure SSH
+        run: |
+          echo -e "Host *\n  StrictHostKeyChecking no\n  KexAlgorithms +diffie-hellman-group-exchange-sha256\n  HostkeyAlgorithms +ssh-rsa" >> ~/.ssh/config
+          chmod 600 ~/.ssh/config
+
+      - name: Clean remote directory
+        run: |
+          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} "rm -rf /home2/thencmeo/public_html/* && mkdir -p /home2/thencmeo/public_html"
 
       - name: Upload files via SCP
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          port: 22
-          source: "public/*"
-          target: "/home2/thencmeo/public_html/"
-          strip_components: 1
-          ssh_config: |
-            Host *
-              KexAlgorithms +diffie-hellman-group-exchange-sha256
-              HostkeyAlgorithms +ssh-rsa
+        run: |
+          scp -r public/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home2/thencmeo/public_html/
 
       - name: Add or update config.php files on server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          port: 22
-          ssh_config: |
-            Host *
-              KexAlgorithms +diffie-hellman-group-exchange-sha256
-              HostkeyAlgorithms +ssh-rsa
-          script: |
-            cat <<EOT > /home2/thencmeo/public_html/config/config.php
-            <?php
-            /*
-             * Database Configuration
-             */
-            define("DB_HOST", "${{ secrets.DB_HOST }}");
-            define("DB_USER", "${{ secrets.DB_USER }}");
-            define("DB_PASSWORD", "${{ secrets.DB_PASSWORD }}");
-            define("DB_DATABASE", "${{ secrets.DB_DATABASE }}");
-            ?>
-            EOT
+        run: |
+          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cat <<'EOT' > /home2/thencmeo/public_html/config/config.php
+          <?php
+          /*
+           * Database Configuration
+           */
+          define('DB_HOST', '${{ secrets.DB_HOST }}');
+          define('DB_USER', '${{ secrets.DB_USER }}');
+          define('DB_PASSWORD', '${{ secrets.DB_PASSWORD }}');
+          define('DB_DATABASE', '${{ secrets.DB_DATABASE }}');
+          ?>
+          EOT"
 
-            cat <<EOT > /home2/thencmeo/public_html/admin/config/config.php
-            <?php
-            /*
-             * Database Configuration
-             */
-            define("DB_HOST", "${{ secrets.DB_HOST }}");
-            define("DB_USER", "${{ secrets.DB_USER }}");
-            define("DB_PASSWORD", "${{ secrets.DB_PASSWORD }}");
-            define("DB_DATABASE", "${{ secrets.DB_DATABASE }}");
-            ?>
-            EOT
+          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cat <<'EOT' > /home2/thencmeo/public_html/admin/config/config.php
+          <?php
+          /*
+           * Database Configuration
+           */
+          define('DB_HOST', '${{ secrets.DB_HOST }}');
+          define('DB_USER', '${{ secrets.DB_USER }}');
+          define('DB_PASSWORD', '${{ secrets.DB_PASSWORD }}');
+          define('DB_DATABASE', '${{ secrets.DB_DATABASE }}');
+          ?>
+          EOT"
