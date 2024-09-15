@@ -13,46 +13,56 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up SSH key
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Configure SSH
-        run: |
-          echo -e "Host *\n  StrictHostKeyChecking no\n  KexAlgorithms +diffie-hellman-group-exchange-sha256\n  HostkeyAlgorithms +ssh-rsa" >> ~/.ssh/config
-          chmod 600 ~/.ssh/config
-
       - name: Clean remote directory
-        run: |
-          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} "rm -rf /home2/thencmeo/public_html/* && mkdir -p /home2/thencmeo/public_html"
+        uses: appleboy/ssh-action@v0.1.1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          # Use password authentication instead of key
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            rm -rf /home2/thencmeo/public_html/*
+            mkdir -p /home2/thencmeo/public_html
 
       - name: Upload files via SCP
-        run: |
-          scp -r public/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home2/thencmeo/public_html/
+        uses: appleboy/scp-action@v0.1.1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "public/*"
+          target: "/home2/thencmeo/public_html/"
+          strip_components: 1
 
       - name: Add or update config.php files on server
-        run: |
-          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cat <<'EOT' > /home2/thencmeo/public_html/config/config.php
-          <?php
-          /*
-           * Database Configuration
-           */
-          define('DB_HOST', '${{ secrets.DB_HOST }}');
-          define('DB_USER', '${{ secrets.DB_USER }}');
-          define('DB_PASSWORD', '${{ secrets.DB_PASSWORD }}');
-          define('DB_DATABASE', '${{ secrets.DB_DATABASE }}');
-          ?>
-          EOT"
+        uses: appleboy/ssh-action@v0.1.1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            cat <<EOT > /home2/thencmeo/public_html/config/config.php
+            <?php
+            /*
+             * Database Configuration
+             */
+            define("DB_HOST", "${{ secrets.DB_HOST }}");
+            define("DB_USER", "${{ secrets.DB_USER }}");
+            define("DB_PASSWORD", "${{ secrets.DB_PASSWORD }}");
+            define("DB_DATABASE", "${{ secrets.DB_DATABASE }}");
+            ?>
+            EOT
 
-          ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cat <<'EOT' > /home2/thencmeo/public_html/admin/config/config.php
-          <?php
-          /*
-           * Database Configuration
-           */
-          define('DB_HOST', '${{ secrets.DB_HOST }}');
-          define('DB_USER', '${{ secrets.DB_USER }}');
-          define('DB_PASSWORD', '${{ secrets.DB_PASSWORD }}');
-          define('DB_DATABASE', '${{ secrets.DB_DATABASE }}');
-          ?>
-          EOT"
+            cat <<EOT > /home2/thencmeo/public_html/admin/config/config.php
+            <?php
+            /*
+             * Database Configuration
+             */
+            define("DB_HOST", "${{ secrets.DB_HOST }}");
+            define("DB_USER", "${{ secrets.DB_USER }}");
+            define("DB_PASSWORD", "${{ secrets.DB_PASSWORD }}");
+            define("DB_DATABASE", "${{ secrets.DB_DATABASE }}");
+            ?>
+            EOT
