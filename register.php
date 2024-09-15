@@ -37,30 +37,23 @@
             <section>
                 <br>
                 <div class="gap">
-                    <div class="container">
-                        <div class="cnt-frm cmt-frm">
-                            <h3>Create an Account</h3>
-                            <form method="POST">
-                                <div class="row mrg20">
-                                    <div class="col-md-12 col-sm-12 col-lg-12">
-                                        <input type="text" placeholder="Name" name="name" required>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-lg-12">
-                                        <input type="email" placeholder="Email" name="email" required>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-lg-12">
-                                        <input type="text" placeholder="Phone Number" name="phone" required>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-lg-12">
-                                        <textarea placeholder="Address" name="address" required></textarea>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-lg-12">
-                                        <button type="submit" name="submit" class="thm-btn brd-rd40">REGISTER</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                <div class="gap">
+                <div class="container">
+                    <h3 style="text-align: left;">Create an Account</h3>
+                        <form method="POST">
+                            <input type="text" name="name" placeholder="Full Name" required>
+                            <input type="email" name="email" placeholder="Email Address" required>
+                            <input type="text" name="phone" placeholder="Phone Number" required>
+                            <textarea name="address" placeholder="Address" required></textarea>
+                            <button type="submit" name="submit">REGISTER</button>
+                            <div class="terms">
+                                <input type="checkbox" name="terms" id="terms" required>
+                                <label for="terms">
+                                    By checking this box, I agree to receive notifications and reminders. Message data rates may apply. 
+                                    View <a href="terms.php" target="_blank">Privacy Policy</a> and <a href="terms.php" target="_blank">Terms and Conditions</a>.
+                                </label>
+                            </div>
+                    </form>
                 </div>
             </section>       
             <?php include "footer.php"?> 

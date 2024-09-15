@@ -2463,7 +2463,7 @@ footer {
   margin-right: 10px;
   display: inline-block;
   font-size: 18px;
-  float: left;
+  /* float: left; */
   line-height: inherit;
 }
 .event-mta > li + li {margin-top: 10px;}
@@ -4396,4 +4396,79 @@ header.sticky-active{
 }
 .featured-item.style2{
 	padding:200px 15px 130px;
+}
+h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+input[type="text"], input[type="email"], textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 16px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+  border-color: #66afe9;
+  outline: none;
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button {
+  width: 100%;
+  background-color: #28a745;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.terms {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.terms input {
+  margin-top: 4px;
+}
+
+.terms a {
+  color: #28a745;
+  text-decoration: none;
+}
+
+.terms a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .container {
+      padding: 20px;
+  }
+
+  button {
+      font-size: 16px;
+  }
 }
