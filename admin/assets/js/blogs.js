@@ -309,8 +309,9 @@ function getBlogCategory(){
         url : './php/classes/Blogs.php',
         method : 'GET',
         data : {GET_BLOGCAT: 1},
-        success : function(response){;
-            var resp = $.parseJSON(response);;
+        success : function(response){
+            var resp = $.parseJSON(response);
+            console.log(resp);
             var catSelectHTML = '<option value="">Select Category</option>';
             $.each(resp.data, function(index, value){
                 catSelectHTML += '<option value="'+ value.Blog_Cat_ID +'">'+ value.Blog_Cat_Name +'</option>';
