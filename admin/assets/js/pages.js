@@ -60,6 +60,44 @@ $(document.body).on('click', '.delete-banner', function(){
     }
 });
 
+//Edit Event Modal
+$(document.body).on("click", ".edit-banner", function(){
+    var banner = $.parseJSON($.trim($(this).children("span").html()));
+
+    $("#editBanner #name").val(banner.Image); // Set banner name
+    $("#editBanner #showMessage").prop('checked', banner.ShowMessage == 1); // Set ShowMessage switch
+    $("#editBanner #status").prop('checked', banner.Status == 1); // Set Status switch
+
+    // Optionally set the hidden input for banner ID
+    $("#editBanner input[name='id']").val(banner.ID); 
+
+    $("#editBanner").modal('show');
+});
+
+//Save Update Edit Blog Category Modal
+$(".submitedit-banner").on('click', function(){
+    $.ajax({
+        url : './php/classes/Pages.php',
+        method : 'POST',
+        data : new FormData($("#edit-banner-form")[0]),
+        contentType : false,
+        cache : false,
+        processData : false,
+        success : function(response){
+            var resp = $.parseJSON(response);
+            if (resp.status == 200) {
+                banner_table.ajax.reload();
+                alert(resp.message);
+                $("#edit-banner-form").trigger("reset");
+                $("#editBanner").modal('hide');
+            }else if(resp.status == 303){
+                alert(resp.message);
+                console.log(resp.message);
+            }
+        }
+    })
+});
+
 
 function loadHome(){
     loadBanners();
@@ -70,7 +108,7 @@ function loadBanners(){
     banner_table = $('#banners-list').DataTable({
         columnDefs: [
             {
-            targets: 3,
+            targets: 4,
             render: function(data, type, row){
                 return ('<div class="">'+
                         '<button type="button" class="btn btn-outline-success edit-banner" id="'+row.ID+'"><span style="display:none;">'+JSON.stringify(row)+'</span>Edit</button>&nbsp&nbsp'+
@@ -93,6 +131,13 @@ function loadBanners(){
             { data: "Image" },
             {data : function(row, type, val, met){
                 if (row.Status == 0){
+                    return '<span class="badge badge-danger">Inactive</span>';
+                } else {
+                    return '<span class="badge badge-success">Active</span>';
+                }
+            }},
+            {data : function(row, type, val, met){
+                if (row.ShowMessage == 0){
                     return '<span class="badge badge-danger">Inactive</span>';
                 } else {
                     return '<span class="badge badge-success">Active</span>';

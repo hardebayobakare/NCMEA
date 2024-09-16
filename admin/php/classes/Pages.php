@@ -74,6 +74,17 @@ class Pages {
 	
     }
 
+    public function editBanner($id, $status, $showMessage){
+        $query = "UPDATE `slider` SET `Status` = ?, `ShowMessage` = ? WHERE `ID` = ?";
+        $stmt = $this->con->prepare($query);
+        $stmt->bind_param("iii", $status, $showMessage, $id);
+        if ($stmt->execute()) {
+            return ['status' => 200, 'message' => 'Banner Updated Successfully..!'];
+        } else {
+            return ['status' => 303, 'message' => 'Failed to run query'];
+        }
+    }
+
 }
 
 if (isset($_GET['GET_BANNERS'])) {
@@ -111,5 +122,19 @@ if (isset($_POST['DELETE_BANNER'])) {
         echo json_encode(['status'=> 303, 'message'=> 'Invalid banner id']);
         exit();
     }
+}
+
+//Edit Banner
+if (isset($_POST['edit_banner'])){
+    $p = new Pages();
+    extract($_POST);
+
+    // Set default values if checkboxes are not present in POST
+    $status = isset($_POST['status']) ? $_POST['status'] : 0;
+    $showMessage = isset($_POST['showMessage']) ? $_POST['showMessage'] : 0;
+
+    $result = $p->editBanner($id, $status, $showMessage);
+
+    echo json_encode($result);
 }
 ?>

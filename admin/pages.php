@@ -67,6 +67,7 @@
                                                     <th>S/N</th>
                                                     <th>Image</th>
                                                     <th>Status</th>
+                                                    <th>Show Message</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>

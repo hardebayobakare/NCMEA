@@ -883,12 +883,14 @@ header.style1.sticky-active nav > div > ul > li {color: #666;}
   width: 100%;
 }
 .featured-item {
+  height: 100vh;
   float: left;
   position: relative;
   z-index: 1;
   width: 100%;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   padding: 200px 15px;
 }
 .featured-item:before {
@@ -904,8 +906,11 @@ header.style1.sticky-active nav > div > ul > li {color: #666;}
 }
 .featured-cap {
   display: inline-block;
+  /* justify-content: center; */
+  align-items: center;
   max-width: 50%;
   padding:20px 0 60px 0;
+  height: 100%;
 }
 .featured-cap > img {
   width: auto !important;
