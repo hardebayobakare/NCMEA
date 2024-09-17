@@ -27,9 +27,9 @@
                                     <h4>Useful Links</h4>
                                     <ul>
                                         <li><a href="contact" title="">Contact Us</a></li>
-                                        <li><a href="#" title="">Terms & Conditions</a></li>
-                                        <li><a href="#" title="">Privacy Policy</a></li>
-                                        <li><a href="#" title="">Cookies Policy</a></li>
+                                        <li><a href="terms" target="_blank">Terms & Conditions</a></li>
+                                        <li><a href="policy" target="_blank">Privacy Policy</a></li>
+                                        <li><a href="policy" target="_blank">Cookies Policy</a></li>
                                     </ul>
                                 </div>
                             </div>
