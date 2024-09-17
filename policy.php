@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <?php
+            include "session.php";
+            include "header.php";
+        ?>
+    </head>
     <body>
         <main>
-            <?php 
-                include "session.php";
-                include "header.php";
-         
+            <?php          
                 include "dashboard_header.php"
             ?>  
             <section>
