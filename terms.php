@@ -13,44 +13,93 @@
                 <div class="gap">
                 <div class="gap">
                 <div class="container">
-                    <h1>Terms and Conditions</h1>
-                    <p>Welcome to Nigeria Canadaian Muslim Edmonton Association!</p>
-                    
-                    <p>These terms and conditions outline the rules and regulations for the use of Nigeria Canadaian Muslim Edmonton Association's Website, located at Edmonton CA.</p>
-                    
-                    <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use thencme.org if you do not agree to take all of the terms and conditions stated on this page.</p>
-                    
-                    <h2>Cookies</h2>
-                    <p>We employ the use of cookies. By accessing thencme.org, you agreed to use cookies in agreement with Nigeria Canadaian Muslim Edmonton Association!’s Privacy Policy.</p>
-                    
-                    <h2>License</h2>
-                    <p>Unless otherwise stated, Nigeria Canadaian Muslim Edmonton Association and/or its licensors own the intellectual property rights for all material on thencme.org. All intellectual property rights are reserved. You may access this from thencme.org for your own personal use subjected to restrictions set in these terms and conditions.</p>
-                    
-                    <p>You must not:</p>
-                    <ul>
-                        <li>Republish material from thencme.org</li>
-                        <li>Sell, rent or sub-license material from thencme.org</li>
-                        <li>Reproduce, duplicate or copy material from thencme.org</li>
-                        <li>Redistribute content from thencme.org</li>
-                    </ul>
-                    
-                    <h2>Content Liability</h2>
-                    <p>We shall not be held responsible for any content that appears on your website. You agree to protect and defend us against all claims that are arising on your website. No link(s) should appear on any website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third-party rights.</p>
-                    
-                    <h2>Your Privacy</h2>
-                    <p>Please read our <a href="privacy-policy.php">Privacy Policy</a>.</p>
-                    
-                    <h2>Reservation of Rights</h2>
-                    <p>We reserve the right to request that you remove all links or any particular link to our Website. You approve to immediately remove all links to our Website upon request. We also reserve the right to amend these terms and conditions and it’s linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.</p>
-                    
-                    <h2>Removal of links from our website</h2>
-                    <p>If you find any link on our Website that is offensive for any reason, you are free to contact and inform us at any moment. We will consider requests to remove links but we are not obligated to or so or to respond to you directly.</p>
-                    
-                    <h2>Disclaimer</h2>
-                    <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties, and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>
-                    <ul>
-                        <li>Limit or exclude our or your liability for death or personal</li>
-                    </ul>
+                <h1>Terms & Conditions</h1>
+                <p><strong>Updated at September 16th 2024</strong></p>
+
+                <h2>General Terms</h2>
+                <p>By accessing the website of the Nigerian Canadian Muslims Edmonton Association (NCMEA) you confirm that you agree with and are bound by the terms of service outlined below. These terms apply to the entire website and any communication between you and NCMEA.</p>
+                <p>NCMEA is not liable for any direct, indirect, special, incidental, or consequential damages, including but not limited to loss of data arising from the use or inability to use the materials on this site. If your use of materials from this site results in the need for servicing or correction of equipment or data, you assume any costs thereof.</p>
+                <p>NCMEA will not be responsible for any outcomes resulting from the usage of our resources. We reserve the right to revise the resources usage policy at any time.</p>
+
+                <h2>License</h2>
+                <p>NCMEA grants you a revocable, non-exclusive, non-transferable, limited license to use the website strictly in accordance with the terms of this agreement.</p>
+
+                <h2>Definitions and Key Terms</h2>
+                <ul>
+                    <li><strong>Cookie:</strong> A small amount of data generated by a website and saved by your web browser. It is used to identify your browser, provide analytics, and remember your preferences.</li>
+                    <li><strong>Organization:</strong> Refers to NCMEA, responsible for your information under these Terms & Conditions.</li>
+                    <li><strong>Country:</strong> Refers to Canada, where NCMEA is based.</li>
+                    <li><strong>Device:</strong> Any internet-connected device used to access NCMEA services.</li>
+                    <li><strong>Service:</strong> Refers to the services provided by NCMEA.</li>
+                    <li><strong>Third-party service:</strong> Refers to third parties that may offer content or services via our platform.</li>
+                    <li><strong>Website:</strong> Refers to the NCMEA website accessible at <a href="http://www.thencme.org">www.thencme.org</a>.</li>
+                    <li><strong>You:</strong> Refers to a person or entity registered with NCMEA to use the services.</li>
+                </ul>
+
+                <h2>Restrictions</h2>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>License, sell, rent, or commercially exploit the website.</li>
+                    <li>Modify, reverse-engineer, or make derivative works from any part of the website.</li>
+                    <li>Remove or obscure any proprietary notice or trademark of NCMEA or its affiliates.</li>
+                </ul>
+
+                <h2>Your Suggestions</h2>
+                <p>Any feedback or suggestions provided by you to NCMEA regarding the website remain the sole property of NCMEA. NCMEA is free to use, modify, or redistribute these suggestions without any obligation to you.</p>
+
+                <h2>Your Consent</h2>
+                <p>By using our website or registering an account, you consent to our Terms & Conditions.</p>
+
+                <h2>Links to Other Websites</h2>
+                <p>This website may contain links to external websites not controlled by NCMEA. We are not responsible for the content or accuracy of such websites. Your use of linked websites is subject to their own terms and policies.</p>
+
+                <h2>Cookies</h2>
+                <p>NCMEA uses cookies to enhance the performance of the website. You can disable cookies through your web browser, but this may limit some functionalities of the site.</p>
+
+                <h2>Modifications to the Website</h2>
+                <p>NCMEA reserves the right to modify or discontinue any part of the website without notice or liability to users.</p>
+
+                <h2>Third-Party Services</h2>
+                <p>NCMEA is not responsible for third-party content or services accessible through the website. Any interactions with third-party websites are at your own risk and subject to the third-party terms.</p>
+
+                <h2>Term and Termination</h2>
+                <p>This agreement remains in effect until terminated by you or NCMEA. NCMEA may terminate your access to the website at any time with or without notice for any reason.</p>
+                <p>Upon termination, you must stop using the website and delete all copies from your devices.</p>
+
+                <h2>Indemnification</h2>
+                <p>You agree to indemnify and hold NCMEA harmless from any claims arising out of your use of the website, violation of the terms, or any breach of rights of third parties.</p>
+
+                <h2>No Warranties</h2>
+                <p>The website is provided "AS IS" without warranties of any kind. NCMEA does not guarantee uninterrupted access or error-free operation of the website.</p>
+
+                <h2>Limitation of Liability</h2>
+                <p>NCMEA is not liable for any direct, indirect, or incidental damages arising from the use of the website.</p>
+
+                <h2>Severability</h2>
+                <p>If any provision of this agreement is found invalid, the remainder of the agreement will remain in effect.</p>
+
+                <h2>Amendments to this Agreement</h2>
+                <p>NCMEA reserves the right to update these Terms & Conditions at any time. By continuing to use the website after any updates, you agree to the revised terms.</p>
+
+                <h2>Entire Agreement</h2>
+                <p>This agreement along with our Privacy Policy constitutes the entire agreement between you and NCMEA concerning the website.</p>
+
+                <h2>SMS Terms and Conditions</h2>
+                <p>By subscribing to text notifications from the Nigerian Canadian Muslims Edmonton Association (NCMEA), you agree to receive recurring messages related to our events, updates, and announcements at the phone number provided during registration. Message frequency may vary and message and data rates may apply based on your mobile carrier’s plan.</p>
+                <ul>
+                    <li><strong>Opt-in:</strong> By providing your phone number, you are consenting to receive automated text messages from NCMEA.</li>
+                    <li><strong>Help:</strong> For assistance, reply "HELP" to any of our messages or contact us at:<br>Phone: +1 (587) 983-0215<br>Email: <a href="mailto:ncmedmonton@gmail.com">ncmedmonton@gmail.com</a></li>
+                    <li><strong>Opt-out:</strong> To stop receiving messages, reply "STOP" at any time and you will be unsubscribed from our SMS notifications.</li>
+                    <li><strong>Disclaimer:</strong> NCMEA is not responsible for any delays or message failures caused by mobile carriers.</li>
+                </ul>
+
+                <h2>Contact Us</h2>
+                <p>If you have any questions regarding these Terms & Conditions, please contact us at:</p>
+                <ul>
+                    <li>Email: <a href="mailto:ncmedmonton@gmail.com">ncmedmonton@gmail.com</a></li>
+                    <li>Phone: +1 (587) 983-0215</li>
+                    <li>Address: 1949 Lakewood Rd. South NW Edmonton, AB T6K3W9</li>
+                </ul>
             </section>       
             <?php include "footer.php"?> 
         </main><!-- Main Wrapper -->

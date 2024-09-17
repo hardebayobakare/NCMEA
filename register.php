@@ -50,7 +50,7 @@
                                 <input type="checkbox" name="terms" id="terms" required>
                                 <label for="terms">
                                     By checking this box, I agree to receive notifications and reminders. Message data rates may apply. 
-                                    View <a href="terms.php" target="_blank">Privacy Policy</a> and <a href="terms.php" target="_blank">Terms and Conditions</a>.
+                                    View <a href="policy.php" target="_blank">Privacy Policy</a> and <a href="terms.php" target="_blank">Terms and Conditions</a>.
                                 </label>
                             </div>
                     </form>
