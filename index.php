@@ -43,24 +43,26 @@
                     <div class="featured-area-wrap text-center">
                         <div class="featured-area owl-carousel">
                             <?php if($sliders != null){
-                                foreach ($sliders as $slider){?>
-                                    <div class="featured-item" style="background-image: url(<?php echo "assets/img/resources/".$slider['Image']?>);">
-                                        <?php if ($slider['ShowMessage'] == 1){?>
+                                foreach ($sliders as $slider){
+                                    if ($slider['ShowMessage'] == 1) {?>
+                                        <div class="featured-item" style="background-image: url(<?php echo "assets/img/resources/".$slider['Image']?>); background-size: 100% 80%">
                                             <div class="featured-cap">
                                                 <img src="assets/img/resources/bsml-txt.png" alt="bsml-txt.png">
                                                 <h1><img src="assets/img/resources/ayat-txt.png" alt="ayat-txt-color.png"></h1>
                                                 <h3>He raised the sky and set up the balance</h3>
                                                 <span>"Surah Al-Rahmaan verse 7"</span>
                                             </div>
-                                        <?php } else {?>
-                                            <div class="featured-cap">
-                                                <!-- <img src="assets/img/resources/bsml-txt.png" alt="bsml-txt.png">
+                                        </div>
+                                    <?php } else {?>
+                                        <div class="featured-item no-overlay" style="background-image: url(<?php echo "assets/img/resources/".$slider['Image']?>); background-size: 100% 80%">
+                                            <!-- <div class="featured-cap">
+                                                <img src="assets/img/resources/bsml-txt.png" alt="bsml-txt.png">
                                                 <h1><img src="assets/img/resources/ayat-txt.png" alt="ayat-txt-color.png"></h1>
                                                 <h3>He raised the sky and set up the balance</h3>
-                                                <span>"Surah Al-Rahmaan verse 7"</span> -->
-                                            </div>
-                                        <?php }?>                                        
-                                    </div>
+                                                <span>"Surah Al-Rahmaan verse 7"</span>
+                                            </div> -->
+                                        </div>
+                                    <?php }?>                                        
                                 <?php }?>
                             <?php } ?>                            
                         </div>
