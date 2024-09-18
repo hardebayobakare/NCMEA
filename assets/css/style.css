@@ -893,6 +893,12 @@ header.style1.sticky-active nav > div > ul > li {color: #666;}
   background-repeat: no-repeat;
   padding: 200px 15px;
 }
+.featured-item.no-overlay {
+  filter: none;
+}
+.featured-item.no-overlay:before {
+  background-color: transparent;
+}
 .featured-item:before {
   content: "";
   position: absolute;
@@ -901,7 +907,7 @@ header.style1.sticky-active nav > div > ul > li {color: #666;}
   top: 0;
   bottom: 0;
   z-index: -1;
-  background-color: #2a486c;
+  /* background-color: #2a486c; */
   opacity: .65;
 }
 .featured-cap {
