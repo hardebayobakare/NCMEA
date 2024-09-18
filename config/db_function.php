@@ -12,7 +12,7 @@ class DB_Functions{
     }
 
     function getSliders(){
-        $result = $this->conn->query("SELECT * FROM slider");
+        $result = $this->conn->query("SELECT * FROM slider WHERE Status = '1'");
 
         $sliders = array();
         while($item = $result->fetch_assoc())
